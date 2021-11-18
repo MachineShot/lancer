@@ -29,12 +29,7 @@
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-data-rest</artifactId> 
-    </dependency>  
-    <dependency> 
-      <groupId>com.h2database</groupId>  
-      <artifactId>h2</artifactId>  
-      <scope>runtime</scope> 
-    </dependency>  
+    </dependency>
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-test</artifactId>  
@@ -43,31 +38,43 @@
     <dependency> 
       <groupId>mysql</groupId>  
       <artifactId>mysql-connector-java</artifactId> 
-    </dependency>  
-    <dependency> 
-      <groupId>org.webjars</groupId>  
-      <artifactId>jquery</artifactId>  
-      <version>3.4.1</version> 
-    </dependency>  
-    <dependency> 
-      <groupId>org.webjars</groupId>  
-      <artifactId>bootstrap</artifactId>  
-      <version>4.3.1</version> 
-    </dependency>  
-    <dependency> 
-      <groupId>org.webjars</groupId>  
-      <artifactId>webjars-locator-core</artifactId> 
-    </dependency>  
-    <dependency> 
-      <groupId>org.springframework.boot</groupId>  
-      <artifactId>spring-boot-starter-oauth2-client</artifactId> 
-    </dependency> 
+    </dependency>
   </dependencies>  
   <build> 
-    <plugins>
+    <plugins> 
+      <plugin> 
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-maven-plugin</artifactId> 
+      </plugin>  
       <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-webapp-maven-plugin</artifactId>
+        <version>2.2.1</version>
+        <configuration>
+          <schemaVersion>v2</schemaVersion>
+          <subscriptionId>4577399b-887f-48e8-bd7f-93b6daee7d90</subscriptionId>
+          <resourceGroup>STPP</resourceGroup>
+          <appName>lancer</appName>
+          <pricingTier>F1</pricingTier>
+          <region>northeurope</region>
+          <appServicePlanName>ASP-STPP-b271</appServicePlanName>
+          <appServicePlanResourceGroup>STPP</appServicePlanResourceGroup>
+          <runtime>
+            <os>Linux</os>
+            <javaVersion>Java 11</javaVersion>
+            <webContainer>Java SE</webContainer>
+          </runtime>
+          <deployment>
+            <resources>
+              <resource>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+        </configuration>
       </plugin>
     </plugins> 
   </build> 
