@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +16,7 @@ public class User {
     private Long id;
 
     private String username;
+    @JsonIgnore
     private String password;
     private boolean enabled;
 
