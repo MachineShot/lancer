@@ -1,20 +1,22 @@
-package com.example.controller;
+package com.example.service;
 
 import java.util.*;
 
 import com.example.entity.Role;
 import com.example.entity.User;
+import com.example.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MyUserDetails implements UserDetails {
-
     private User user;
 
-    public MyUserDetails(User user) {
-        this.user = user;
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -57,6 +59,4 @@ public class MyUserDetails implements UserDetails {
     public boolean isEnabled() {
         return user.isEnabled();
     }
-
-
 }
