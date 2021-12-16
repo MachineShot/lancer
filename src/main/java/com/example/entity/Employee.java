@@ -7,7 +7,7 @@ import java.util.*;
 @Table(name = "Employees")
 public class Employee {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
     @Column(name = "firstName")
     private String firstName;
@@ -39,7 +39,7 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id) &&
+        return Objects.equals(Id, employee.Id) &&
                 Objects.equals(firstName, employee.firstName) &&
                 Objects.equals(lastName, employee.lastName) &&
                 Objects.equals(description, employee.description);
@@ -47,15 +47,15 @@ public class Employee {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, description);
+        return Objects.hash(Id, firstName, lastName, description);
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getFirstName() {
@@ -101,7 +101,7 @@ public class Employee {
     @Override
     public String toString() {
         return "com.example.entity.Employee{" +
-                "id=" + id +
+                "id=" + Id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", description='" + description + '\'' +

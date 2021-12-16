@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "Ratings")
 public class Rating {
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long Id;
     @Column(name = "comment")
     private String comment;
     @Column(name = "stars")
@@ -27,22 +27,22 @@ public class Rating {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rating rating = (Rating) o;
-        return Objects.equals(id, rating.id) &&
+        return Objects.equals(Id, rating.Id) &&
                 Objects.equals(comment, rating.comment) &&
                 Objects.equals(stars, rating.stars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, comment, stars);
+        return Objects.hash(Id, comment, stars);
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getComment() {
@@ -72,7 +72,7 @@ public class Rating {
     @Override
     public String toString() {
         return "com.example.entity.Rating{" +
-                "id=" + id +
+                "id=" + Id +
                 ", comment='" + comment + '\'' +
                 ", stars='" + stars + '\'' + '}';
     }

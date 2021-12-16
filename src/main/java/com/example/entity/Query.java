@@ -7,7 +7,7 @@ import java.util.Objects;
 @Table(name = "Queries")
 public class Query {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long Id;
 
     @Column(name = "title")
     private String title;
@@ -35,7 +35,7 @@ public class Query {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Query query = (Query) o;
-        return Objects.equals(id, query.id) &&
+        return Objects.equals(Id, query.Id) &&
                 Objects.equals(title, query.title) &&
                 Objects.equals(description, query.description) &&
                 Objects.equals(published, query.published);
@@ -43,11 +43,11 @@ public class Query {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, published);
+        return Objects.hash(Id, title, description, published);
     }
 
     public long getId() {
-        return id;
+        return Id;
     }
 
     public String getTitle() {
@@ -75,7 +75,7 @@ public class Query {
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public Long getFk_Employeeid() {
@@ -89,7 +89,7 @@ public class Query {
     @Override
     public String toString() {
         return "com.example.entity.Query{" +
-                "id=" + id +
+                "id=" + Id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", published='" + published + '\'' +
