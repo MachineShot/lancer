@@ -17,6 +17,7 @@ export default class Register extends Component {
             .catch(e => {
                 console.log(e);
             });
+        this.props.history.push('/login')
     }
 
     validationSchema() {

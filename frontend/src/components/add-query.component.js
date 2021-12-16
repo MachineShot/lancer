@@ -1,34 +1,26 @@
 import React, { Component } from "react";
-import EmployeeDataService from "../services/employee.service";
+import QueryDataService from "../services/query.service";
 
-export default class AddEmployee extends Component {
+export default class AddQuery extends Component {
     constructor(props) {
         super(props);
-        this.onChangeFirstName = this.onChangeFirstName.bind(this);
-        this.onChangeLastName = this.onChangeLastName.bind(this);
+        this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.saveEmployee = this.saveEmployee.bind(this);
-        this.newEmployee = this.newEmployee.bind(this);
+        this.saveQuery = this.saveQuery.bind(this);
+        this.newQuery = this.newQuery.bind(this);
 
         this.state = {
             id: null,
-            firstName: "",
-            lastName: "",
+            title: "",
             description: "",
 
             submitted: false
         };
     }
 
-    onChangeFirstName(e) {
+    onChangeTitle(e) {
         this.setState({
-            firstName: e.target.value
-        });
-    }
-
-    onChangeLastName(e) {
-        this.setState({
-            lastName: e.target.value
+            title: e.target.value
         });
     }
 
@@ -38,19 +30,18 @@ export default class AddEmployee extends Component {
         });
     }
 
-    saveEmployee() {
+    saveQuery() {
         var data = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            description: this.state.description
+            title: this.state.title,
+            description: this.state.description,
+            fk_Employeeid: this.props.match.params.id
         };
 
-        EmployeeDataService.create(data)
+        QueryDataService.create(data)
             .then(response => {
                 this.setState({
                     id: response.data.id,
-                    firstName: response.data.firstName,
-                    lastName: response.data.lastName,
+                    title: response.data.title,
                     description: response.data.description,
 
                     submitted: true
@@ -62,15 +53,16 @@ export default class AddEmployee extends Component {
             });
     }
 
-    newEmployee() {
+    newQuery() {
         this.setState({
             id: null,
-            firstName: "",
-            lastName: "",
+            title: "",
             description: "",
+            fk_Employeeid: this.props.match.params.id,
 
             submitted: false
         });
+        console.log(this.state);
     }
 
     render() {
@@ -79,35 +71,22 @@ export default class AddEmployee extends Component {
                 {this.state.submitted ? (
                     <div>
                         <h4>You submitted successfully!</h4>
-                        <button className="btn btn-success" onClick={this.newEmployee}>
+                        <button className="btn btn-success" onClick={this.newQuery}>
                             Add more
                         </button>
                     </div>
                 ) : (
                     <div>
                         <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
+                            <label htmlFor="title">Title</label>
                             <input
                                 type="text"
                                 className="form-control"
-                                id="firstName"
+                                id="title"
                                 required
-                                value={this.state.firstName}
-                                onChange={this.onChangeFirstName}
-                                name="firstName"
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="lastName">Last Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="lastName"
-                                required
-                                value={this.state.lastName}
-                                onChange={this.onChangeLastName}
-                                name="lastName"
+                                value={this.state.title}
+                                onChange={this.onChangeTitle}
+                                name="title"
                             />
                         </div>
 
@@ -124,7 +103,7 @@ export default class AddEmployee extends Component {
                             />
                         </div>
 
-                        <button onClick={this.saveEmployee} className="btn btn-success">
+                        <button onClick={this.saveQuery} className="btn btn-success">
                             Submit
                         </button>
                     </div>
