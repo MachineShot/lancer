@@ -13,6 +13,24 @@ class UserDataService {
         return http.post("/register", data);
     }
 
+    login(data) {
+        return http.post('/authenticate', data).then(response => {
+            if (response.data) {
+                localStorage.setItem("token", JSON.stringify(response.data.token));
+                localStorage.setItem("user", JSON.stringify(data.username));
+            }
+        });
+    }
+
+    logout() {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+    }
+
+    getCurrentUser() {
+        return JSON.parse(localStorage.getItem('user'));;
+    }
+
     update(id, data) {
         return http.put(`/api/users/${id}`, data);
     }

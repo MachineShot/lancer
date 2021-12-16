@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import UserDataService from "../services/user.service";
 
+
 export default class Register extends Component {
     constructor(props) {
         super(props);
@@ -34,7 +35,7 @@ export default class Register extends Component {
             confirmPassword: Yup.string()
                 .required('Confirm Password is required')
                 .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
-            selectRole: Yup.string()
+            role: Yup.string()
                 .required('Role is required'),
             acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
         });
@@ -46,7 +47,7 @@ export default class Register extends Component {
             email: '',
             password: '',
             confirmPassword: '',
-            selectRole: 'user',
+            role: 'user',
             acceptTerms: false,
         };
 
@@ -108,8 +109,8 @@ export default class Register extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="selectRole"> Select role </label>
-                                <Field name="selectRole" as="select">
+                                <label htmlFor="role"> Select role </label>
+                                <Field name="role" as="select">
                                     <option value="user">User</option>
                                     <option value="employee">Employee</option>
                                 </Field>

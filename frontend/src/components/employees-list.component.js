@@ -8,7 +8,6 @@ export default class EmployeesList extends Component {
         this.retrieveEmployees = this.retrieveEmployees.bind(this);
         this.refreshList = this.refreshList.bind(this);
         this.setActiveEmployee = this.setActiveEmployee.bind(this);
-        this.removeAllEmployees = this.removeAllEmployees.bind(this);
 
         this.state = {
             employees: [],
@@ -49,17 +48,6 @@ export default class EmployeesList extends Component {
         });
     }
 
-    removeAllEmployees() {
-        EmployeeDataService.deleteAll()
-            .then(response => {
-                console.log(response.data);
-                this.refreshList();
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-
     render() {
         const { employees, currentEmployee, currentIndex } = this.state;
         return (
@@ -82,13 +70,6 @@ export default class EmployeesList extends Component {
                             </li>
                         ))}
                     </ul>
-
-                    <button
-                        className="m-3 btn btn-sm btn-danger"
-                        onClick={this.removeAllEmployees}
-                    >
-                        Remove All
-                    </button>
                 </div>
                 <div className="col-md-6">
                     {currentEmployee ? (
