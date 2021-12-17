@@ -25,6 +25,7 @@ export default class Employee extends Component {
 
     componentDidMount() {
         this.getEmployee(this.props.match.params.id);
+        console.log(this.props.match.params.id);
     }
 
     onChangeFirstName(e) {
@@ -171,7 +172,7 @@ export default class Employee extends Component {
                         </form>
 
                         <button
-                            className="badge badge-danger mr-2"
+                            className="btn btn-danger"
                             onClick={this.deleteEmployee}
                         >
                             Delete
@@ -179,7 +180,7 @@ export default class Employee extends Component {
 
                         <button
                             type="submit"
-                            className="badge badge-success"
+                            className="btn btn-warning"
                             onClick={this.updateEmployee}
                         >
                             Update

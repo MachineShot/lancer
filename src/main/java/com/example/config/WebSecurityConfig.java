@@ -3,6 +3,7 @@ package com.example.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -70,12 +71,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable().cors().and()
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/**").permitAll().
-                //.antMatchers("/authenticate", "/register").permitAll()
-                //.antMatchers("/").hasAnyAuthority("USER", "EMPLOYEE", "ADMIN")
-                //.antMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority("USER", "EMPLOYEE", "ADMIN")
-                //.antMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority("ADMIN", "EMPLOYEE")
-                //.antMatchers(HttpMethod.DELETE, "/api/**").hasAnyAuthority("ADMIN").
+                .authorizeRequests()
+                //.antMatchers("/**").permitAll()
+                .antMatchers("/login", "/register", "/authenticate").permitAll()
+                .antMatchers("/").hasAnyAuthority("USER", "EMPLOYEE", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority("USER", "EMPLOYEE", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority("ADMIN", "EMPLOYEE")
+                .antMatchers(HttpMethod.DELETE, "/api/**").hasAnyAuthority("ADMIN").
                 // all other requests need to be authenticated
                         anyRequest().authenticated().and().
                 // make sure we use stateless session; session won't be used to
@@ -90,7 +92,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(final WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/authenticate").antMatchers("/register");
+                .antMatchers("/login", "/register", "/authenticate");
     }
 }
 

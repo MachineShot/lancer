@@ -114,6 +114,7 @@ export default class Register extends Component {
                                 <Field name="role" as="select">
                                     <option value="user">User</option>
                                     <option value="employee">Employee</option>
+                                    <option value="admin">Admin</option>
                                 </Field>
                             </div>
 

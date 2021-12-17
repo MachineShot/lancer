@@ -16,6 +16,7 @@ export default class Login extends Component {
             .catch(e => {
                 console.log(e);
             });
+        this.props.history.push('/')
     }
 
     validationSchema() {

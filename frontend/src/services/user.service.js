@@ -16,6 +16,7 @@ class UserDataService {
     login(data) {
         return http.post('/authenticate', data).then(response => {
             if (response.data) {
+                console.log(response);
                 localStorage.setItem("token", JSON.stringify(response.data.token));
                 localStorage.setItem("user", JSON.stringify(data.username));
             }
@@ -25,6 +26,7 @@ class UserDataService {
     logout() {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        console.log("logout. ", localStorage);
     }
 
     getCurrentUser() {

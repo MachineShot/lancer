@@ -153,7 +153,7 @@ export default class EmployeesList extends Component {
                                     employeeQueries.map((query, index) => (
                                         <li
                                             className={
-                                                "list-group-item " +
+                                                "list-group-item margin-xs " +
                                                 (index === currentQueryIndex ? "active" : "")
                                             }
                                             onClick={() => this.setActiveQuery(query, index)}
@@ -197,7 +197,7 @@ export default class EmployeesList extends Component {
                             }
 
                             <Link
-                                to={"/employees/" + currentEmployee.id}
+                                to={"/employee/" + currentEmployee.id}
                                 className="btn btn-outline-secondary"
                             >
                                 Edit Employee

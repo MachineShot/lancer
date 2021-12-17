@@ -40,18 +40,19 @@ class App extends Component {
                             </Link>
                         </li>
                     </div>
-                    <a href="/" className="navbar-brand">
-                        {JSON.parse(localStorage.user)}
-                    </a>
+                </nav>
+
+                <nav className="navbar fixed-bottom navbar-light bg-light">
+                    <h3>Gerardas Kiuberis IFK-9</h3>
                 </nav>
 
                 <div className="container mt-3">
                     <Switch>
+                        <Route exact path={["/", "/employees"]} component={EmployeesList} />
                         <Route path="/register" component={Register} />
                         <Route path="/login" component={Login} />
                         <Route path="/employees" component={EmployeesList} />
-                        <Route exact path={["/", "/employees"]} component={EmployeesList} />
-                        <Route path="/employees/:id" component={Employee} />
+                        <Route path="/employee/:id" component={Employee} />
                         <Route path="/addQuery/:id" component={AddQuery} />
                         <Route path="/ratings/:id" component={Rating} />
                         <Route path="/employeeRatings/:id" component={RatingsList} />

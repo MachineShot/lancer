@@ -122,7 +122,7 @@ export default class Query extends Component {
                         </form>
 
                         <button
-                            className="badge badge-danger mr-2"
+                            className="btn btn-danger"
                             onClick={this.deleteQuery}
                         >
                             Delete
@@ -130,7 +130,7 @@ export default class Query extends Component {
 
                         <button
                             type="submit"
-                            className="badge badge-success"
+                            className="btn btn-warning"
                             onClick={this.updateQuery}
                         >
                             Update
