@@ -58,7 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         // Modify allowed origins if you run the client at a different endpoint
-        config.addAllowedOrigin("https://lancer-stpp.herokuapp.com:3000");
+        config.addAllowedOrigin("https://lancer-frontend.herokuapp.com");
+        config.addAllowedOrigin("http://localhost:3000");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
